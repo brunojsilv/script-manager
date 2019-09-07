@@ -29,10 +29,10 @@ INSTALL() {
   wget https://raw.githubusercontent.com/brunojsilv/script-manager/master/scripts
   wget https://raw.githubusercontent.com/brunojsilv/script-manager/master/scripts.service
 
-  sed -i 's/user_here/$user_ad/g' scripts
-  sed -i 's/pass_here/$senha_user_ad/g' scripts
-  sed -i 's/srvaddr_here/$ip_srv_ad/g' scripts
-  sed -i 's/share_here/$share/g' scripts
+  sed -i "s/user_here/$user_ad/g" scripts
+  sed -i "s/pass_here/$senha_user_ad/g" scripts
+  sed -i "s/srvaddr_here/$ip_srv_ad/g" scripts
+  sed -i "s/share_here/$share/g" scripts
 
   mv scripts /etc/init.d/
   chmod +x /etc/init.d/scripts
@@ -61,7 +61,7 @@ echo " - Instalação do serviço de gerenciamento de Shell Scripts - ";
 
 ISROOT
 
-echo -e “O que deve ser feito? \n[1 = INSTALAÇÃO] \n[2 = DESINSTALAÇÃO]”
+echo “O que deve ser feito? [1 = INSTALAÇÃO] [2 = DESINSTALAÇÃO]”
 read resposta
 
 case "$resposta" in
