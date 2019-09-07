@@ -38,3 +38,4 @@ EXECUTE() {
 CLEAN
 DOWNLOAD
 EXECUTE
+echo -e "\n" >> /var/log/scripts.log
