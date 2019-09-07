@@ -30,3 +30,4 @@ echo " linhas do script de serviço " >> /etc/init.d/policy
 echo " linhas do daemon do serviço " >> /etc/systemd/system/policy
 
 echo "Instalação concluída!";
+rm -rf install
