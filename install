@@ -1,0 +1,32 @@
+#!/bin/bash
+clear
+
+USUARIO=`whoami`
+if [ "$USUARIO" != "root" ]; then 
+  echo "ESTE PROGRAMA PRECISA SER EXECUTADO COM PERMISSOES DE SUPERUSUARIO!" 
+  echo "Abortando..." 
+  exit 1
+fi
+
+echo " - Instalação do serviço de gerenciamento de Shell Scripts - ";
+
+# Criação e leitura de variaveis:
+echo "Informe o endereço IP do servidor do compartilhamento de arquivos:";
+read ip_srv_ad;
+
+echo "Informe o usuário do AD usado para o compartilhamento:";
+read user_ad;
+
+echo "Informe a senha do usuário usado para o compartilhamento:";
+read senha_user_ad;
+
+echo "Informe o nome do compartilhamento:";
+read share;
+
+mkdir /etc/.scripts
+
+echo " linhas do script de serviço " >> /etc/init.d/policy
+
+echo " linhas do daemon do serviço " >> /etc/systemd/system/policy
+
+echo "Instalação concluída!";

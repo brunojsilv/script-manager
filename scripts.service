@@ -1,0 +1,11 @@
+# cd /etc/systemd/system/
+[Unit]
+Description=scripts
+After=multi-user.target
+[Service]
+Type=simple
+ExecStart=/etc/init.d/scripts start
+User=root
+WorkingDirectory=/etc/init.d
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,40 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides: scripts
+# Default-Start: 2 3 4 5
+# Default-Stop? 0 1 6
+# Short-Description: Shell Script Manager
+# Description: Shell Script Sync and Download Service provided by daemon.
+### END INIT INFO
+
+localdir=/etc/.scripts
+user=user_here
+pass=pass_here
+srvaddr=srvaddr_here
+share=share_here
+
+CLEAN() {
+if ! ping -c 2 $srvaddr >/dev/null; then
+echo "`date` - Server DOWN!!! Temporary files will not be erased" >> /var/log/scripts.log
+else
+echo "`date` - Server UP!!! Cleaning temporary files before download" >> /var/log/scripts.log
+rm -R $localdir/*
+fi
+}
+
+DOWNLOAD() {
+   echo "`date` - Downloading scripts and set permissions" >> /var/log/scripts.log
+   smbclient -U $user%$pass //$srvaddr/$share -c 'prompt;recurse;cd scripts\;lcd $localdir/;mget *' >> /var/log/scripts.log
+   cd $localdir/sh
+   find . -type f -name "*.sh" -exec chmod +x {} \;
+}
+
+EXECUTE() {
+   echo "`date` - Running all scripts" >> /var/log/scripts.log
+   cd $localdir/sh
+   find . -type f -name "*.sh" -exec {} \; >> /var/log/scripts.log
+}
+
+CLEAN
+DOWNLOAD
+EXECUTE
