@@ -1,33 +1,80 @@
 #!/bin/bash
 clear
 
-USUARIO=`whoami`
-if [ "$USUARIO" != "root" ]; then 
-  echo "ESTE PROGRAMA PRECISA SER EXECUTADO COM PERMISSOES DE SUPERUSUARIO!" 
-  echo "Abortando..." 
-  exit 1
-fi
+ISROOT(){
+  USUARIO=`whoami`
+  if [ "$USUARIO" != "root" ]; then 
+    echo "ESTE PROGRAMA PRECISA SER EXECUTADO COM PERMISSOES DE SUPERUSUARIO!" 
+    echo "Abortando..." 
+    exit 1
+  fi
+}
+
+INSTALL() {
+  # Criação e leitura de variaveis:
+  echo "Informe o endereço IP do servidor do compartilhamento de arquivos:";
+  read ip_srv_ad;
+
+  echo "Informe o usuário do AD usado para o compartilhamento:";
+  read user_ad;
+
+  echo "Informe a senha do usuário usado para o compartilhamento:";
+  read senha_user_ad;
+
+  echo "Informe o nome do compartilhamento:";
+  read share;
+
+  mkdir /etc/.scripts
+
+  wget https://raw.githubusercontent.com/brunojsilv/script-manager/master/scripts
+  wget https://raw.githubusercontent.com/brunojsilv/script-manager/master/scripts.service
+
+  sed -i 's/user_here/$user_ad/g' scripts
+  sed -i 's/pass_here/$senha_user_ad/g' scripts
+  sed -i 's/srvaddr_here/$ip_srv_ad/g' scripts
+  sed -i 's/share_here/$share/g' scripts
+
+  mv scripts /etc/init.d/
+  chmod +x /etc/init.d/scripts
+
+  mv scripts.service /etc/systemd/system/
+  chmod 755 /etc/systemd/system/scripts.service
+
+  systemctl enable scripts.service
+  systemctl daemon-reload
+
+  echo "Instalação concluída!";
+}
+
+UNINSTALL(){
+  systemctl enable scripts.service
+  systemctl daemon-reload
+
+  rm -f /etc/init.d/scripts
+  rm -f /etc/systemd/system/scripts.service
+  rm -rf /etc/.scripts
+
+  echo "Desinstalação concluída!";
+}
 
 echo " - Instalação do serviço de gerenciamento de Shell Scripts - ";
 
-# Criação e leitura de variaveis:
-echo "Informe o endereço IP do servidor do compartilhamento de arquivos:";
-read ip_srv_ad;
+ISROOT
 
-echo "Informe o usuário do AD usado para o compartilhamento:";
-read user_ad;
+echo -e “O que deve ser feito? \n[1 = INSTALAÇÃO] \n[2 = DESINSTALAÇÃO]”
+read resposta
 
-echo "Informe a senha do usuário usado para o compartilhamento:";
-read senha_user_ad;
+case "$resposta" in
+  1)
+    INSTALL
+  ;;
+  2)
+    UNINSTALL
+  ;;
+  *)
+    echo "Opção inválida"
+    echo "Abortando..."
+  ;;
+esac
 
-echo "Informe o nome do compartilhamento:";
-read share;
-
-mkdir /etc/.scripts
-
-echo " linhas do script de serviço " >> /etc/init.d/policy
-
-echo " linhas do daemon do serviço " >> /etc/systemd/system/policy
-
-echo "Instalação concluída!";
 rm -rf install
