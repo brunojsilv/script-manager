@@ -24,6 +24,8 @@ INSTALL() {
   echo "Informe o nome do compartilhamento:";
   read share;
 
+  apt-get install -y smbclient
+  
   mkdir /etc/.scripts
 
   wget https://raw.githubusercontent.com/brunojsilv/script-manager/master/scripts
