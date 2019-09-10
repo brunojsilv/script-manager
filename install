@@ -12,13 +12,13 @@ ISROOT(){
 
 INSTALL() {
   # Criação e leitura de variaveis:
-  echo "Informe o endereço IP do servidor do compartilhamento de arquivos:";
-  read ip_srv_ad;
+  echo "Informe o endereço do servidor do compartilhamento de arquivos:";
+  read srv_addr;
 
   echo "Informe o usuário do AD usado para o compartilhamento:";
   read user_ad;
 
-  echo "Informe a senha do usuário usado para o compartilhamento:";
+  echo "Informe a senha do usuário AD usado para o compartilhamento:";
   read senha_user_ad;
 
   echo "Informe o nome do compartilhamento:";
@@ -31,7 +31,7 @@ INSTALL() {
 
   sed -i "s/user_here/$user_ad/g" scripts
   sed -i "s/pass_here/$senha_user_ad/g" scripts
-  sed -i "s/srvaddr_here/$ip_srv_ad/g" scripts
+  sed -i "s/srvaddr_here/$srv_addr/g" scripts
   sed -i "s/share_here/$share/g" scripts
 
   mv scripts /etc/init.d/
@@ -47,7 +47,7 @@ INSTALL() {
 }
 
 UNINSTALL(){
-  systemctl enable scripts.service
+  systemctl disable scripts.service
   systemctl daemon-reload
 
   rm -f /etc/init.d/scripts
