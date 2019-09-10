@@ -24,7 +24,7 @@ fi
 
 DOWNLOAD() {
    echo "`date` - Downloading scripts and set permissions" >> /var/log/scripts.log
-   smbclient -U $user%$pass //$srvaddr/$share -c 'prompt;recurse;lcd $localdir/;mget *' >> /var/log/scripts.log
+   smbclient -U $user%$pass //$srvaddr/$share -c 'prompt;recurse;lcd /etc/.scripts/;mget *' >> /var/log/scripts.log
    cd $localdir/sh
    find . -type f -name "*.sh" -exec chmod +x {} \;
 }
