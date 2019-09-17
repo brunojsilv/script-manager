@@ -15,22 +15,22 @@ srvaddr=srvaddr_here
 share=share_here
 
 CLEAN() {
-rm -R $localdir/* >> $logfile
+   rm -R $localdir/* >> $logfile
 }
 
 SETEXEC() {
-echo "`date` - Setting permissions" >> $logfile
-cd $localdir/sh
-find . -type f -name "*.sh" -exec chmod +x {} \;
+   echo "`date` - Setting permissions" >> $logfile
+   cd $localdir/sh
+   find . -type f -name "*.sh" -exec chmod +x {} \;
 }
 
 SRVON() {
-if ! ping -c 2 $srvaddr >/dev/null; then
-echo "`date` - Server DOWN!!! Temporary files will not be erased" >> $logfile
-else
-echo "`date` - Server UP!!! Cleaning temporary files before download" >> $logfile
-CLEAN
-fi
+   if ! ping -c 2 $srvaddr >/dev/null; then
+      echo "`date` - Server DOWN!!! Temporary files will not be erased" >> $logfile
+   else
+      echo "`date` - Server UP!!! Cleaning temporary files" >> $logfile
+      CLEAN
+   fi
 }
 
 DOWNLOAD() {
@@ -49,4 +49,4 @@ DOWNLOAD
 SETEXEC
 EXECUTE
 
-echo -e "`date` - End of execution" >> $logfile
+echo -e "`date` - End of execution\n" >> $logfile
