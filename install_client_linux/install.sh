@@ -23,9 +23,6 @@ INSTALL() {
   
   mkdir /etc/.scripts
 
-  wget https://raw.githubusercontent.com/brunojsilv/script-manager/master/scripts
-  wget https://raw.githubusercontent.com/brunojsilv/script-manager/master/scripts.service
-
   sed -i "s/user_here/$user_ad/g" scripts
   sed -i "s/pass_here/$senha_user_ad/g" scripts
   sed -i "s/srvaddr_here/$srv_addr/g" scripts
