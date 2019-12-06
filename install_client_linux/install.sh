@@ -28,10 +28,10 @@ INSTALL() {
   sed -i "s/srvaddr_here/$srv_addr/g" scripts
   sed -i "s/share_here/$share/g" scripts
 
-  mv scripts /etc/init.d/
+  cp scripts /etc/init.d/
   chmod +x /etc/init.d/scripts
 
-  mv scripts.service /etc/systemd/system/
+  cp scripts.service /etc/systemd/system/
   chmod 755 /etc/systemd/system/scripts.service
 
   systemctl enable scripts.service
