@@ -1,4 +1,4 @@
 net user /ADD lxadmin keDBD6V4chcG /ACTIVE:YES /FULLNAME:"LXVOL Share User"
-mkdir C:\LXVOL
-MKlink %USERPROFILE%\Desktop\LXVOL.lnk C:\LXVOL\
-net share Financeiro=C:\LXVOL /grant:lxadmin,read
+mkdir C:\Windows\LXVOL
+MKlink %USERPROFILE%\Desktop\LXVOL C:\Windows\LXVOL\
+net share LXVOL=C:\Windows\LXVOL /grant:lxadmin,read
