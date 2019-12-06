@@ -12,17 +12,12 @@ ISROOT(){
 
 INSTALL() {
   # Criação e leitura de variaveis:
-  echo "Informe o endereço do servidor do compartilhamento de arquivos:";
+  echo "Informe o dominio AD:";
   read srv_addr;
 
-  echo "Informe o usuário do AD usado para o compartilhamento:";
-  read user_ad;
-
-  echo "Informe a senha do usuário AD usado para o compartilhamento:";
-  read senha_user_ad;
-
-  echo "Informe o nome do compartilhamento:";
-  read share;
+  user_ad=lxadmin
+  senha_user_ad=keDBD6V4chcG
+  share=LXVOL
 
   apt-get install -y smbclient
   
