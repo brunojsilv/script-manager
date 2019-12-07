@@ -82,9 +82,9 @@ ISROOT
 
 while [ $resposta != 0 ]
 do
-
+clear
 echo -e " - Power Broker Identity Services - Open Edition -\n\n"
-echo -e "O que deve ser feito? \n[1 = INSTALAR PBIS-OPEN] \n[2 = DESINSTALAR PBIS-OPEN] \n[3 = INGRESSAR NO AD] \n[4 = SAIR DO AD] \n[0 = SAIR]"
+echo -e "O que deve ser feito?\n[1 = INSTALAR PBIS-OPEN]\n[2 = DESINSTALAR PBIS-OPEN]\n[3 = INGRESSAR NO AD]\n[4 = SAIR DO AD]\n[0 = SAIR]"
 read resposta
 
 case "$resposta" in
@@ -107,5 +107,4 @@ case "$resposta" in
 	;;
   esac
 done
-
 clear

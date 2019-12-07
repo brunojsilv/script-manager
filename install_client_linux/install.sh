@@ -1,5 +1,5 @@
 #!/bin/bash
-clear
+
 
 ISROOT(){
   USUARIO=`whoami`
@@ -11,7 +11,7 @@ ISROOT(){
 }
 
 INSTALL() {
-  # Criação e leitura de variaveis:
+  clear
   echo "Informe o dominio AD:";
   read srv_addr;
 
@@ -37,38 +37,43 @@ INSTALL() {
   systemctl enable scripts.service
   systemctl daemon-reload
 
-  echo "Instalação concluída!";
+  echo -e "\nInstalação concluída!\n\nPresione ENTER para continuar..."
 }
 
 UNINSTALL(){
-  systemctl disable scripts.service
-  systemctl daemon-reload
+  clear
 
+  systemctl disable scripts.service
   rm -f /etc/init.d/scripts
   rm -f /etc/systemd/system/scripts.service
   rm -rf /etc/.scripts
-
-  echo "Desinstalação concluída!";
+  systemctl daemon-reload
+  
+  echo -e "\nDesinstalação concluída!\n\nPresione ENTER para continuar..."
 }
-
-echo " - Instalação do serviço de gerenciamento de Shell Scripts - ";
 
 ISROOT
 
-echo “O que deve ser feito? [1 = INSTALAÇÃO] [2 = DESINSTALAÇÃO]”
-read resposta
+while [ $resposta != 0 ]
+do
+  clear
+  echo -e " - Instalação do serviço de inicializaçao de Shell Scripts -\n\n";
+  echo -e "O que deve ser feito?\n[1 = INSTALAÇÃO]\n[2 = DESINSTALAÇÃO]"
+  read resposta
 
-case "$resposta" in
-  1)
-    INSTALL
-  ;;
-  2)
-    UNINSTALL
-  ;;
-  *)
-    echo "Opção inválida"
-    echo "Abortando..."
-  ;;
-esac
-
-rm -rf install
+  case "$resposta" in
+    1)
+      INSTALL
+    ;;
+    2)
+      UNINSTALL
+    ;;
+    0)
+    ;;
+    *)
+      echo "Opção inválida"
+      echo "Abortando..."
+    ;;
+  esac
+done
+clear
