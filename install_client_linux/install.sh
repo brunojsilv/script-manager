@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 ISROOT(){
   USUARIO=`whoami`
   if [ "$USUARIO" != "root" ]; then 
@@ -48,8 +47,14 @@ UNINSTALL(){
   rm -f /etc/systemd/system/scripts.service
   rm -rf /etc/.scripts
   systemctl daemon-reload
-  
+
   echo -e "\nDesinstalação concluída!\n\nPresione ENTER para continuar..."
+}
+
+INVALID(){
+  clear
+	echo -e "Opção inválida! \n\nPresione ENTER para continuar..."
+	read
 }
 
 ISROOT
@@ -71,8 +76,7 @@ do
     0)
     ;;
     *)
-      echo "Opção inválida"
-      echo "Abortando..."
+      INVALID
     ;;
   esac
 done
