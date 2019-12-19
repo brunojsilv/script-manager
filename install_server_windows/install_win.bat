@@ -4,9 +4,9 @@ cls
 :menu
 cls              
 echo - Servico de inicializacao de Shell Scripts [SERVIDOR] -
+echo.
+echo.
 echo O que deve ser feito?
-echo.
-echo.
 echo [1 = INSTALACAO]
 echo [2 = DESINSTALACAO]
 echo [0 = SAIR]
