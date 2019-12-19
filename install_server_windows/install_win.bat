@@ -36,8 +36,8 @@ goto menu
 cls
 net user lxadmin /DELETE
 net share LXVOL$ /delete
-del /S /F /Q C:\Windows\LXVOL
-del /S /F /Q %USERPROFILE%\Desktop\LXVOL
+rd /s /q C:\Windows\LXVOL
+rd /s /q %USERPROFILE%\Desktop\LXVOL
 echo.
 echo Desinstalacao concluida!
 echo.
