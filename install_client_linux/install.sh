@@ -66,7 +66,7 @@ ISROOT
 while [ $resposta != 0 ]
 do
 	clear
-	echo -e " - Instalação do serviço de inicializaçao de Shell Scripts -\n\n";
+	echo -e " - Serviço de inicializaçao de Shell Scripts [CLIENTE] -\n\n";
 	echo -e "O que deve ser feito?\n[1 = INSTALAÇÃO]\n[2 = DESINSTALAÇÃO]\n[0 = SAIR]"
 	read resposta
 
