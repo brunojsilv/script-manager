@@ -24,6 +24,8 @@ INSTALL() {
 	
 	mkdir /etc/.scripts
 
+	cp scripts scripts_old
+
 	sed -i "s/user_here/$user_ad/g" scripts
 	sed -i "s/pass_here/$senha_user_ad/g" scripts
 	sed -i "s/srvaddr_here/$srv_addr/g" scripts
@@ -34,6 +36,9 @@ INSTALL() {
 
 	cp scripts.service /etc/systemd/system/
 	chmod 755 /etc/systemd/system/scripts.service
+
+	rm scripts
+	mv scripts_old scripts
 
 	systemctl enable scripts.service
 	systemctl daemon-reload
