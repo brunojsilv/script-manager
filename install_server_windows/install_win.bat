@@ -50,7 +50,7 @@ exit
 
 :opcao3
 cls
-echo Opção inválida!
+echo Opcao invalida!
 echo.
 pause
 goto menu
