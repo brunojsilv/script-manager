@@ -27,14 +27,20 @@ mkdir C:\Windows\LXVOL\misc
 MKlink /d %USERPROFILE%\Desktop\LXVOL C:\Windows\LXVOL\
 net share LXVOL$=C:\Windows\LXVOL /grant:lxadmin,read
 echo.
+echo Instalação concluída!
+echo.
 pause
 goto menu
 
 :opcao2
 cls
-echo ==================================
-echo *      Desinstalado               *
-echo ==================================
+net user lxadmin /DELETE
+net share LXVOL$ /delete
+del C:\Windows\LXVOL
+del %USERPROFILE%\Desktop\LXVOL
+echo.
+echo Desinstalação concluída!
+echo.
 pause
 goto menu
 
@@ -44,8 +50,7 @@ exit
 
 :opcao3
 cls
-echo ==============================================
-echo * Opcao Invalida! Escolha outra opcao do menu *
-echo ==============================================
+echo Opção inválida!
+echo.
 pause
 goto menu
