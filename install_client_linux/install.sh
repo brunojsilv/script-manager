@@ -13,7 +13,7 @@ ISROOT(){
 
 INSTALL() {
 	clear
-	echo "Informe o dominio AD:";
+	echo "Informe endereço do servidor:";
 	read srv_addr;
 
 	user_ad=lxadmin
