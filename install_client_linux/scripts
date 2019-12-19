@@ -9,10 +9,10 @@
 
 localdir=/etc/.scripts
 logfile=/var/log/scripts.log
-user=lxadmin
-pass=keDBD6V4chcG
-srvaddr=empresa.srv
-share=LXVOL
+user=user_here
+pass=pass_here
+srvaddr=srvaddr_here
+share=share_here
 
 CLEAN() {
    rm -R $localdir/* >> $logfile

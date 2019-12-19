@@ -18,7 +18,7 @@ INSTALL() {
 
 	user_ad=lxadmin
 	senha_user_ad=keDBD6V4chcG
-	share=LXVOL
+	share=LXVOL$
 
 	apt-get install -y smbclient
 	
