@@ -1,5 +1,4 @@
 @echo off
-cls
 
 :menu
 cls              
