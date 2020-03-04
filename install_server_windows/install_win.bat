@@ -24,7 +24,7 @@ mkdir C:\Windows\LXVOL
 mkdir C:\Windows\LXVOL\sh
 mkdir C:\Windows\LXVOL\misc
 MKlink /d %USERPROFILE%\Desktop\LXVOL C:\Windows\LXVOL\
-net share LXVOL$=C:\Windows\LXVOL /grant:lxadmin,read
+net share LXVOL=C:\Windows\LXVOL /grant:lxadmin,read
 echo.
 echo Instalacao concluida!
 echo.
@@ -34,7 +34,7 @@ goto menu
 :opcao2
 cls
 net user lxadmin /DELETE
-net share LXVOL$ /delete
+net share LXVOL /delete
 rd /s /q C:\Windows\LXVOL
 rd /s /q %USERPROFILE%\Desktop\LXVOL
 echo.
