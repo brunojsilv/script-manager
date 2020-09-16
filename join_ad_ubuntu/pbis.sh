@@ -17,7 +17,6 @@ INSTALL(){
 	wget -O /etc/apt/sources.list.d/pbiso.list http://repo.pbis.beyondtrust.com/apt/pbiso.list
 	apt-get update
 	apt-get install -y pbis-open
-	/opt/pbis/bin/config AssumeDefaultDomain true
 	echo -e "\nInstalaçao concluida!\n\nPresione ENTER para continuar...";
 	read
 }
@@ -57,7 +56,7 @@ JOIN_AD(){
 LEAVE_AD(){
 	saida=1
 	clear
-	domainjoin-cli leave
+	domainjoin-cli leave --disable ssh
 	while [ $saida != 0 ]
 	do
 		echo -e "\nDeseja reiniciar agora? \n[1 = Sim]\n[0 = Não|Cancelar]"
