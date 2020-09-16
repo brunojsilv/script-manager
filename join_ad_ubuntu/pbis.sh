@@ -24,7 +24,7 @@ INSTALL(){
 
 UNINSTALL(){
 	clear
-	apt-get remove -y pbis-open
+	apt-get purge -y pbis-open
 	echo -e "\nDesinstalaçao concluida!\n\nPresione ENTER para continuar...";
 	read
 }
