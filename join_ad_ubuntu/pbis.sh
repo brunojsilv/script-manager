@@ -33,6 +33,10 @@ JOIN_AD(){
 	saida=1
 	clear
 	domainjoin-cli join --disable ssh
+	
+	/opt/pbis/bin/config AssumeDefaultDomain True
+	/opt/pbis/bin/config LoginShellTemplate /bin/bash
+	/opt/pbis/bin/config HomeDirTemplate %H/%U
 
 	while [ $saida != 0 ]
 		do
